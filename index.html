@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Sample Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-size: cover; /* Change to cover to make the background image cover the entire page */
+            background-position: center;
+            background-attachment: fixed; /* Keeps the background image fixed while scrolling */
+            scroll-behavior: smooth; /* Enables smooth scrolling */
+        }
+        header {
+            background-color: white;
+            color: black;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: lavender;
+            padding: 0 20px;
+            position: fixed; /* Fixes the navbar at the top */
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s; /* Smooth transition for background color */
+        }
+        nav.scrolled1 {
+            background-color: lightcoral; /* Light color when scrolled */
+        }
+        nav.scrolled2 {
+            background-color: lightseagreen; /* Light color when scrolled further */
+        }
+        nav.scrolled3 {
+            background-color: lightgoldenrodyellow; /* Light color when scrolled even further */
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            position: relative;
+        }
+        nav a {
+            display: block;
+            padding: 15px 20px;
+            color: black;
+            text-decoration: none;
+            font-size: 18px; /* Increased font size */
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        nav ul ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: peachpuff;
+            padding: 0;
+        }
+        nav ul ul li {
+            width: 200px;
+        }
+        nav ul ul a {
+            padding: 10px 15px;
+        }
+        nav ul li:hover > ul {
+            display: block;
+        }
+        .auth-links {
+            display: flex;
+        }
+        .auth-links a {
+            margin-left: 10px;
+        }
+        /* Additional styling to enable scrolling */
+        main {
+            padding: 100px 20px 20px; /* Added top padding to avoid content being hidden under the fixed navbar */
+            margin: 20px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.7); /* Added background color to improve readability */
+        }
+        section {
+            padding: 60px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        .navbar-title {
+            flex-grow: 1;
+            text-align: center;
+        }
+        .image-container {
+            position: fixed;
+            top: 100px; /* Adjust as needed */
+            right: 20px; /* Adjust as needed */
+            z-index: 999; /* Ensure the image is above other content */
+            display: none; /* Initially hidden */
+        }
+        .image-container img {
+            max-width: 300px; /* Adjust as needed */
+            border: 2px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="navbar-container">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <h1 class="navbar-title">Aesthetic Verve Fashion</h1>
+            <div class="auth-links">
+                <a href="register.html">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="image-container" id="image-container">
+        <img id="section-image" src="" alt="Section Image">
+    </div>
+
+    <main>
+        <section id="home">
+            <h2>Home</h2>
+            <p>Welcome to the home section of the website!!</p>
+        </section>
+        <section id="about">
+            <h2>About</h2>
+            <p>Learn more about our website!!</p>
+        </section>
+        <section id="services">
+            <h2>Services</h2>
+            <p>Discover the services we offer here!!</p>
+        </section>
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Get in touch with us through this section!!</p>
+        </section>
+        <section id="Register">
+            <h2>Register</h2>
+            <p>Register on our site above on top right corner!!</p>
+        </section>
+        
+    </main>
+
+    <script>
+        const imageContainer = document.getElementById('image-container');
+        const sectionImage = document.getElementById('section-image');
+        const sections = document.querySelectorAll('section');
+
+        const images = {
+            home: 'home.jpg', // Path to home section image
+            about: 'about.avif', // Path to about section image
+            services: 'servicess.jpg', // Path to services section image
+            contact: 'contact.jpg' // Path to contact section image
+        };
+
+        const sectionBackgrounds = {
+            home: 'home.jpg', // Path to home section background image
+            about: 'about.avif', // Path to about section background image
+            services: 'servicess.jpg', // Path to services section background image
+            contact: 'contact.jpg' // Path to contact section background image
+        };
+
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (window.scrollY > 200) { // Adjust these values to your preference
+                navbar.classList.remove('scrolled1', 'scrolled2');
+                navbar.classList.add('scrolled3');
+            } else if (window.scrollY > 100) {
+                navbar.classList.remove('scrolled1', 'scrolled3');
+                navbar.classList.add('scrolled2');
+            } else if (window.scrollY > 50) {
+                navbar.classList.remove('scrolled2', 'scrolled3');
+                navbar.classList.add('scrolled1');
+            } else {
+                navbar.classList.remove('scrolled1', 'scrolled2', 'scrolled3');
+            }
+
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
+                    const sectionId = section.getAttribute('id');
+                    if (images[sectionId]) {
+                        sectionImage.src = images[sectionId];
+                        imageContainer.style.display = 'block';
+                    }
+                    if (sectionBackgrounds[sectionId]) {
+                        document.body.style.backgroundImage = `url('${sectionBackgrounds[sectionId]}')`;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
