@@ -7,7 +7,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 In the project directory, you can run:
 
 ### `npm start`
-
+Firstly download zip file and then unzip it and create new folder in your pc
+Now open that folder in Visual Studio code and run it then the page will be opened in the browser.
 Runs the app in the development mode.\
 Open [http://127.0.0.1:5500/users-app/src/] (http://127.0.0.1:5500/users-app/src/) to view it in your browser.
 
